@@ -160,8 +160,9 @@ public class MainWindow extends JFrame implements ActionListener{
         student.setYearBorn((Integer) spinnerYearBorn.getValue());
         student.setGender((Gender) comboGender.getSelectedItem());
 
-       // System.out.println(student);
+        //System.out.println(student);
 
         labelResult.setText(student.toString());
+
     }
 }
