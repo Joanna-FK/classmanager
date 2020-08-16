@@ -1,5 +1,6 @@
-package com.sda.classmanager;
+package com.sda.classmanager.model;
 
+import com.sda.classmanager.model.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,8 @@ public class Student {
     private  boolean quarantined;
     private Gender gender;
 
+    @Override
+    public String toString() {
+        return name + " "+  lastName;
+    }
 }

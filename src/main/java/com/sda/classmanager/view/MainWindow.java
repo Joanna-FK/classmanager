@@ -2,12 +2,11 @@
  * Created by JFormDesigner on Sat Aug 15 14:22:57 CEST 2020
  */
 
-package com.sda.classmanager;
+package com.sda.classmanager.view;
+
+import com.sda.classmanager.model.Student;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import javax.swing.*;
 
 /**

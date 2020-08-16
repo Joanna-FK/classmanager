@@ -2,10 +2,13 @@
  * Created by JFormDesigner on Sun Aug 16 14:07:46 CEST 2020
  */
 
-package com.sda.classmanager;
+package com.sda.classmanager.view;
+
+import com.sda.classmanager.interfaces.INewStudentFromSubmittedListener;
+import com.sda.classmanager.model.Gender;
+import com.sda.classmanager.model.Student;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import javax.swing.*;
 
@@ -37,20 +40,16 @@ public class StudentForm extends JPanel {
         comboGender = new JComboBox();
         vSpacer5 = new JPanel(null);
         buttonSubmit = new JButton();
-        vSpacer4 = new JPanel(null);
-        vSpacer1 = new JPanel(null);
-        vSpacer2 = new JPanel(null);
-        vSpacer3 = new JPanel(null);
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
-        setLayout(new GridLayout(12, 2));
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
+        javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax
+        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
+        .awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
+        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".
+        equals(e.getPropertyName()))throw new RuntimeException();}});
+        setLayout(new GridLayout(7, 2));
 
         //---- labelHeadlineForm ----
         labelHeadlineForm.setText("Student Form:");
@@ -87,14 +86,10 @@ public class StudentForm extends JPanel {
         //---- buttonSubmit ----
         buttonSubmit.setText("Submit");
         add(buttonSubmit);
-        add(vSpacer4);
-        add(vSpacer1);
-        add(vSpacer2);
-        add(vSpacer3);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
 
-        Gender [] genders = Gender.values();
+        Gender[] genders = Gender.values();
         for(Gender gender : genders) {
             comboGender.addItem(gender);
         }
@@ -112,9 +107,16 @@ public class StudentForm extends JPanel {
             if (newStudentListener != null) {
                 newStudentListener.studentCreated(student);
             }
+            clearForm();
         });
     }
 
+    void clearForm(){
+        textFieldName.setText("");
+        textFieldLastName.setText("");
+        checkQuarantined.setSelected(false);
+        spinnerYearBorn.setValue(LocalDate.now().getYear());
+    }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Pawel
@@ -132,9 +134,5 @@ public class StudentForm extends JPanel {
     private JComboBox comboGender;
     private JPanel vSpacer5;
     private JButton buttonSubmit;
-    private JPanel vSpacer4;
-    private JPanel vSpacer1;
-    private JPanel vSpacer2;
-    private JPanel vSpacer3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
