@@ -21,6 +21,32 @@ public class StudentForm extends JPanel {
     public StudentForm(INewStudentFromSubmittedListener listener) {
         this.newStudentListener = listener;
         initComponents();
+        Gender[] genders = Gender.values();
+        for (Gender gender : genders) {
+            comboGender.addItem(gender);
+    }
+        //Prepare spinner Year Born                      ..wartosc pocztakowa  minimum      maksimum               skok
+        spinnerYearBorn.setModel(new SpinnerNumberModel(LocalDate.now().getYear(), 1920, LocalDate.now().getYear(), 1));
+
+        buttonSubmit.addActionListener(actionEvent -> {
+            Student student = new Student();
+            student.setName(textFieldName.getText());
+            student.setLastName(textFieldLastName.getText());
+            student.setQuarantined(checkQuarantined.isSelected());
+            student.setYearBorn((Integer) spinnerYearBorn.getValue());
+            student.setGender((Gender) comboGender.getSelectedItem());
+            if (newStudentListener != null) {
+                newStudentListener.studentCreated(student);
+            }
+            clearForm();
+        });
+    }
+
+    void clearForm(){
+        textFieldName.setText("");
+        textFieldLastName.setText("");
+        checkQuarantined.setSelected(false);
+        spinnerYearBorn.setValue(LocalDate.now().getYear());
     }
 
     private void initComponents() {
@@ -42,13 +68,13 @@ public class StudentForm extends JPanel {
         buttonSubmit = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-        javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax
-        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-        .awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt
-        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
-        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".
-        equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+        swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border
+        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
+        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
+        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+        .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
+        ( ); }} );
         setLayout(new GridLayout(7, 2));
 
         //---- labelHeadlineForm ----
@@ -88,35 +114,9 @@ public class StudentForm extends JPanel {
         add(buttonSubmit);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
-
-        Gender[] genders = Gender.values();
-        for(Gender gender : genders) {
-            comboGender.addItem(gender);
         }
 
-        //Prepare spinner Year Born                      ..wartosc pocztakowa  minimum      maksimum               skok
-        spinnerYearBorn.setModel(new SpinnerNumberModel(LocalDate.now().getYear(), 1920, LocalDate.now().getYear(), 1));
 
-        buttonSubmit.addActionListener(actionEvent -> {
-            Student student = new Student();
-            student.setName(textFieldName.getText());
-            student.setLastName(textFieldLastName.getText());
-            student.setQuarantined(checkQuarantined.isSelected());
-            student.setYearBorn((Integer) spinnerYearBorn.getValue());
-            student.setGender((Gender) comboGender.getSelectedItem());
-            if (newStudentListener != null) {
-                newStudentListener.studentCreated(student);
-            }
-            clearForm();
-        });
-    }
-
-    void clearForm(){
-        textFieldName.setText("");
-        textFieldLastName.setText("");
-        checkQuarantined.setSelected(false);
-        spinnerYearBorn.setValue(LocalDate.now().getYear());
-    }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Pawel

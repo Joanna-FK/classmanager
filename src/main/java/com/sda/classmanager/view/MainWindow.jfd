@@ -9,8 +9,9 @@ new FormModel {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
 				"columns": 1
+				"rows": 2
 			} ) {
-				name: "leftPanelek"
+				name: "leftPanel"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 				"$columnSpecs": "0:1.0"
